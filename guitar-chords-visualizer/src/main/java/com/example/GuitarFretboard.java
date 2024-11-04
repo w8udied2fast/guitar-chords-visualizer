@@ -50,7 +50,7 @@ public class GuitarFretboard extends Canvas {
             int y = 50 + i * STRING_HEIGHT;
             gc.strokeLine(50, y, 50 + NUM_FRETS * FRET_WIDTH + FRET_WIDTH / 2, y); 
             gc.setFont(new Font(12));
-            gc.fillText(Integer.toString(NUM_STRINGS - i), 30, y + 5);
+            gc.fillText(Integer.toString(NUM_STRINGS - i), 30, y + 5);}
         }
 
     public void clear() {
