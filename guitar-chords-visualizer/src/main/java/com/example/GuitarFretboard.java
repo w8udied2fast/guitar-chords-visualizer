@@ -28,7 +28,7 @@ public class GuitarFretboard extends Canvas {
             int fret = Integer.parseInt(strings[i]);
             if (fret > 0) {
                 gc.setFill(Color.RED);
-                gc.fillOval(50 + (fret - 1) * FRET_WIDTH - 10, 50 + i * STRING_HEIGHT - 10, 20, 20);
+                gc.fillOval(50 + (fret - 1) * FRET_WIDTH + FRET_WIDTH / 2 - 10, 50 + i * STRING_HEIGHT - 10, 20, 20);
             }
         }
     }
@@ -36,25 +36,21 @@ public class GuitarFretboard extends Canvas {
     private void drawFretboard(GraphicsContext gc) {
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
-        
+
+        // Рисуем лады
         for (int i = 0; i <= NUM_FRETS; i++) {
             int x = 50 + i * FRET_WIDTH;
             gc.strokeLine(x, 50, x, 50 + NUM_STRINGS * STRING_HEIGHT);
             gc.setFont(new Font(12));
-            gc.fillText(Integer.toString(i), x - 5, 40);
+            gc.fillText(Integer.toString(i + 1), x - 5, 40); 
         }
 
+        // Рисуем струны
         for (int i = 0; i < NUM_STRINGS; i++) {
             int y = 50 + i * STRING_HEIGHT;
-            gc.strokeLine(50, y, 50 + NUM_FRETS * FRET_WIDTH, y);
+            gc.strokeLine(50, y, 50 + NUM_FRETS * FRET_WIDTH + FRET_WIDTH / 2, y); 
             gc.setFont(new Font(12));
             gc.fillText(Integer.toString(NUM_STRINGS - i), 30, y + 5);
         }
-    }
-
-
-    public void clear() {
-        GraphicsContext gc = getGraphicsContext2D();
-        gc.clearRect(0, 0, getWidth(), getHeight());
     }
 }
