@@ -23,7 +23,7 @@ public class Main extends Application {
             try {
                 String[] strings = ChordRepository.findByName(chordName);
                 if (strings != null) {
-                    fretboard.drawChord(strings);
+                    fretboard.drawChord(chordName, strings);
                 } else {
                     fretboard.clear();
                 }
