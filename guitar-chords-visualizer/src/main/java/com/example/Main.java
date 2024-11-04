@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class Main extends Application {
     private GuitarFretboard fretboard;
     private TextField chordNameField;
@@ -18,7 +20,16 @@ public class Main extends Application {
         Button showChordButton = new Button("Show Chord");
         showChordButton.setOnAction(event -> {
             String chordName = chordNameField.getText();
-            // оставляю пустым, когда добавлю класс для работы с базой данных - дополню
+            try {
+                String[] strings = ChordRepository.findByName(chordName);
+                if (strings != null) {
+                    fretboard.drawChord(strings);
+                } else {
+                    fretboard.clear();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         });
 
         VBox root = new VBox(chordNameField, showChordButton, fretboard);

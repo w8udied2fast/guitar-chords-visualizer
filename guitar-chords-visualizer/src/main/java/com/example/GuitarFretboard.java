@@ -23,7 +23,7 @@ public class GuitarFretboard extends Canvas {
         // гриф гитары
         drawFretboard(gc);
 
-        // Расположение пальцев
+        // Рисуем расположение пальцев
         for (int i = 0; i < strings.length; i++) {
             int fret = Integer.parseInt(strings[i]);
             if (fret > 0) {
@@ -52,5 +52,9 @@ public class GuitarFretboard extends Canvas {
             gc.setFont(new Font(12));
             gc.fillText(Integer.toString(NUM_STRINGS - i), 30, y + 5);
         }
+
+    public void clear() {
+        GraphicsContext gc = getGraphicsContext2D();
+        gc.clearRect(0, 0, getWidth(), getHeight());
     }
 }
